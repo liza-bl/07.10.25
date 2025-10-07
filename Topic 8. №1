@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int N;
+    cout << "Enter whole number N: ";
+    cin >> N;
+
+    // Создаем указатель типа double и динамическое выделение памяти
+    double* p = new double;
+    *p = static_cast<double>(N);
+
+    // Указатель на указатель
+    double** pp = &p;
+
+    // Выводим значения, сохранённого в динамической памяти
+    cout << *(*pp) << endl;
+
+    // Освобождаем выделенную динамическую память
+    delete p;
+
+    return 0;
+}
