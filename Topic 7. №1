@@ -1,0 +1,42 @@
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <string>
+#include <sstream> 
+
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter number of friends : ";
+    cin >> n;
+    cin.ignore(); // Убираем символ новой строки после ввода n
+
+    vector<double> criteriaSum(3, 0.0);
+
+    for (int i = 0; i < n; ++i) {
+        cout << "Enter surname, name and three grades : ";
+        string line;
+        getline(cin, line);
+        istringstream iss(line);
+        
+        string surname, name;
+        double scores[3];
+        iss >> surname >> name >> scores[0] >> scores[1] >> scores[2];
+
+        criteriaSum[0] += scores[0];
+        criteriaSum[1] += scores[1];
+        criteriaSum[2] += scores[2];
+    }
+
+    // Вычисляем средние значения
+    for (int i = 0; i < 3; ++i) {
+        criteriaSum[i] /= n;
+    }
+
+    // Выводим результаты с одним знаком после запятой
+    cout << fixed << setprecision(1);
+    cout << criteriaSum[0] << " " << criteriaSum[1] << " " << criteriaSum[2] << endl;
+
+    return 0;
+}
