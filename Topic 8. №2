@@ -1,0 +1,47 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main() {
+    int n;
+    cout << "Enter the size of the array N: ";
+    cin >> n;
+
+    if (n < 1 || n > 1000) {
+        cout << "Error: n must be from 1 to 1000" << endl;
+        return 1;
+    }
+
+    // Создаем указатель на массив типа double
+    double* array = new double[n];
+
+    // Заполненяем массив числами от 1 до n
+    for (int i = 0; i < n; ++i) {
+        array[i] = i + 1; // числа от 1 до n
+    }
+
+    // Генерируем рандомные числа
+    srand(static_cast<unsigned int>(time(0)));
+
+    // Перемешиваем массив
+    for (int i = 0; i < n; ++i) {
+        int randomIndex = rand() % n;
+        swap(array[i], array[randomIndex]);
+    }
+
+    // Вычисляем сумму элементов массива
+    double sum = 0;
+    for (int i = 0; i < n; ++i) {
+        sum += array[i];
+    }
+
+    // Выводим сумму
+    cout << static_cast<int>(sum) << endl; // Приводим к int, так как сумма - целое число
+
+    // Освобождаем выделенную память
+    delete[] array;
+
+    return 0;
+}
